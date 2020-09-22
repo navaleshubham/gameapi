@@ -185,7 +185,7 @@ app.get('/getentry/:colnum',(req,res)=>{
                 update=true
                 // console.log(mat,cplay)
                 cplay=!cplay
-                game.updateOne({palyertoken:token},{$set:{Matrix:mat,cplayer:cplay,moves:{$push:colnum}}},(err,result)=>{
+                game.updateOne({palyertoken:token},{$set:{Matrix:mat,cplayer:cplay}},(err,result)=>{
                     if(err) return res.send(403)
                     c=checkresult(mat)
                     if(c!=undefined){
