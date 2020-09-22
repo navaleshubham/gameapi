@@ -214,12 +214,7 @@ app.get('/getentry/:colnum',(req,res)=>{
     })
 })
 
-app.get('/moves/:token',(req,res)=>{
-    var token=req.cookies.refreshtoken
-    game.find({palyertoken:token},(err,result)=>{
-        res.send(result[0].moves)
-    })
-})
+
   
 //server loaction configuration
 const port = process.env.PORT || 4000;
