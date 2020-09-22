@@ -12,6 +12,9 @@ const newgame= new Schema({
     },
     Winner:{
         type:String
+    },
+    moves:{
+        type:Array
     }
     
 })

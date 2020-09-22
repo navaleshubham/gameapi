@@ -185,7 +185,7 @@ app.get('/getentry/:colnum',(req,res)=>{
                 update=true
                 // console.log(mat,cplay)
                 cplay=!cplay
-                game.updateOne({palyertoken:token},{$set:{Matrix:mat,cplayer:cplay}},(err,result)=>{
+                game.updateOne({palyertoken:token},{$set:{Matrix:mat,cplayer:cplay,moves:{$push:colnum}}},(err,result)=>{
                     if(err) return res.send(403)
                     c=checkresult(mat)
                     if(c!=undefined){
@@ -214,7 +214,12 @@ app.get('/getentry/:colnum',(req,res)=>{
     })
 })
 
-
+app.get('/moves/:token',(req,res)=>{
+    var token=req.cookies.refreshtoken
+    game.find({palyertoken:token},(err,result)=>{
+        res.send(result[0].moves)
+    })
+})
   
 //server loaction configuration
 const port = process.env.PORT || 4000;
